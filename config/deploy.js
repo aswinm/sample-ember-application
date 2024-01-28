@@ -1,36 +1,27 @@
-'use strict';
+module.exports = function(environment) {
+  var ENV = {};
 
-module.exports = function(deployTarget) {
-  let ENV = {
-    build: {}
-    // include other plugin configuration that applies to all deploy targets here
-  };
+  if(environment === 'production' || !environment) {
+    ENV["azure-tables"] = {
+      storageAccount: "my-storage-account",
+      storageAccessKey: "my-access-key"
 
-  if (deployTarget === 'development') {
-    ENV.build.environment = 'development';
-    // configure other plugins for development deploy target here
+
+      // You can also connect using your connection string, set it as:
+      // connectionString: "my-connection-string"
+    };
+
+    ENV["azure-blob"] = {
+      storageAccount: "my-storage-account",
+      storageAccessKey: "my-access-key",
+      containerName: "my-container-name" // defaults to 'emberdeploy'
+
+      // You can also connect using your connection string, set it as:
+      // connectionString: "my-connection-string"
+    };
   }
 
-  if (deployTarget === 'staging') {
-    ENV.build.environment = 'production';
-    // configure other plugins for staging deploy target here
-  }
+  // add other environments as needed
 
-  if (deployTarget === 'production') {
-    ENV.build.environment = 'production';
-    // configure other plugins for production deploy target here
-    ENV.s3 = {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        bucket: process.env.AWS_BUCKET,
-        region: process.env.AWS_REGION,
-        acl: false
-    }
-    console.log(ENV.s3);
-  }
-
-  // Note: if you need to build some configuration asynchronously, you can return
-  // a promise that resolves with the ENV object instead of returning the
-  // ENV object synchronously.
   return ENV;
-};
+}
