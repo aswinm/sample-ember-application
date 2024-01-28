@@ -1,0 +1,29 @@
+@import "ember-bootstrap/bootstrap";
+
+.text-center{
+    text-align: center;
+}
+
+.table {
+    width: 90%;
+    margin: auto;
+    border: 1px solid #ddd;
+    margin-top: 30px;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 5px;
+}
+
+.bg-gray,
+.bg-gray td {
+    background-color: #eee;
+}
+
+.bg-green,
+.bg-green td {
+    background-color: #d4edda;
+}

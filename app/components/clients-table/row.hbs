@@ -1,0 +1,20 @@
+<tr class="my-custom-class {{if @client.active 'bg-green' 'bg-gray'}}" ...attributes id="client-{{@client.id}}">
+  <td>
+    {{get-display-name @client}}
+    {{#unless @client.active}}
+      <span>(Inactive)</span>
+    {{/unless}}
+  </td>
+  <td>{{get @client 'company_name'}}</td>
+  {{#if @client.active}}
+    <td>{{@client.phone_number}}</td>
+    <td>{{@client.email}}</td>
+  {{else}}
+    <td>-</td>
+    <td>-</td>
+  {{/if}}
+  <td>
+    <LinkTo @route="clients.view" @model="{{@client.id}}">View</LinkTo> | Edit | Delete
+  </td>
+</tr>
+{{yield}}

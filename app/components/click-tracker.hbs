@@ -1,0 +1,7 @@
+<p class="text-center count">Count: {{this.count}}</p>
+<p class="text-center multiplied-count">Multiplied Count: {{this.multipliedCount}}</p>
+<div class="text-center">
+    <BsButton @type="primary" @onClick={{(fn this.increaseCount 1)}}>Click</BsButton>
+    <BsButton @type="success" @onClick={{(fn this.increaseCount 2)}}>Double Click</BsButton>
+</div>
+{{yield}}
